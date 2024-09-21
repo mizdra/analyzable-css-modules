@@ -351,3 +351,18 @@ test('support symlink', async () => {
     `"{"version":3,"sources":["./1.css"],"names":["a"],"mappings":"AAAA;AAAA,E,aAAAA,G,WAAA;AAAA;AAAA","file":"1.css.d.ts","sourceRoot":""}"`,
   );
 });
+
+test('regenerate .d.ts if dependent files are updated', async () => {
+  createFixtures({
+    '/test/1.scss': '@import "./2.scss"',
+    '/test/2.scss': '.a { dummy: ""; }',
+  });
+  await run({ ...defaultOptions, cache: true });
+  const content1 = await readFile(getFixturePath('/test/1.scss.d.ts'), 'utf8');
+
+  // Update 2.scss
+  await writeFile(getFixturePath('/test/2.scss'), '.b { dummy: ""; }');
+  await run({ ...defaultOptions, cache: true });
+  const content2 = await readFile(getFixturePath('/test/1.scss.d.ts'), 'utf8');
+  expect(content1).not.toEqual(content2);
+});
