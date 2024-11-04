@@ -1,0 +1,46 @@
+{
+  "name": "vscode-happy-css-modules",
+  "version": "0.0.0",
+  "description": "VS Code Extension for happy-css-modules",
+  "type": "module",
+  "main": "dist/extension.cjs",
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mizdra/happy-css-modules.git",
+    "directory": "packages/vscode-happy-css-modules"
+  },
+  "keywords": [
+    "css-modules",
+    "TypeScript"
+  ],
+  "files": [
+    "src",
+    "dist"
+  ],
+  "author": "mizdra <pp.mizdra@gmail.com>",
+  "activationEvents": [
+    "onLanguage:css"
+  ],
+  "license": "MIT",
+  "contributes": {
+    "typescriptServerPlugins": [
+      {
+        "name": "typescript-happy-css-modules-plugin",
+        "enableForWorkspaceTypeScriptVersions": true,
+        "configNamespace": "typescript"
+      }
+    ]
+  },
+  "engines": {
+    "vscode": "^1.55.0"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.91.0"
+  },
+  "dependencies": {
+    "typescript-happy-css-modules-plugin": "^0.0.0"
+  }
+}

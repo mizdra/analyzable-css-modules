@@ -28,6 +28,17 @@
       "cwd": "${workspaceFolder}",
       "runtimeExecutable": "npm",
       "runtimeArgs": ["run", "dev:stylelint-happy-css-modules"]
+    },
+    {
+      "name": "Run vscode-happy-css-modules",
+      "type": "extensionHost",
+      "request": "launch",
+      "runtimeExecutable": "${execPath}",
+      "args": ["--extensionDevelopmentPath=${workspaceFolder}/packages/vscode-happy-css-modules"],
+      "outFiles": [
+        "${workspaceFolder}/packages/vscode-happy-css-modules/dist/**/*.cjs",
+        "${workspaceFolder}/packages/vscode-happy-css-modules/dist/**/*.js"
+      ]
     }
   ]
 }
